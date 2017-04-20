@@ -35,7 +35,9 @@ public class HomePage extends BasePage{
     @FindBy(linkText = "Help") public static WebElement helpButton;
     @FindBy(linkText = "Post Message") public static WebElement postMessageButton;
 
-
+    public void openPage(){
+        loadPage();
+    }
 
 
 

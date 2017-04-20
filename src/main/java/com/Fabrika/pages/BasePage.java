@@ -3,6 +3,7 @@ package com.Fabrika.pages;
 
 import com.Fabrika.pages.objects.HomePage;
 import com.Fabrika.pages.objects.LoginPage;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 import static org.testng.Assert.*;
@@ -11,7 +12,11 @@ import static com.Fabrika.utilites.Waits.*;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.HashMap;
 
 public class BasePage {
 
@@ -34,6 +39,23 @@ public class BasePage {
     @FindBy(linkText = "Logout") public static WebElement logoutButton;
     @FindBy(linkText = "Login") public static WebElement loginButton;
 
+
+
+
+    private String profileCookieName = "session_id_test_1";
+
+
+    HashMap<String, String> cookies = new HashMap<String, String>(){{
+        put("profileCookieValue", "195.138.69.181-82834f7b-ad39-4acd-b567-c4aba76b1851");
+    }};
+
+    public Cookie profileCookie = new Cookie.Builder(profileCookieName, cookies.get("profileCookieValue")).build();
+
+
+
+    public void getPage(String url){
+        driver.get(url);
+    }
 
     public void loadPage(){
         driver.get(getPageUrl());
@@ -135,6 +157,13 @@ public class BasePage {
             e.printStackTrace();
             return false;
         }
+    }
+
+
+    public void addCookie(Cookie cookie) throws Exception {
+        driver.manage().deleteAllCookies();
+        driver.manage().addCookie(cookie);
+        wait.until(cookieExist(cookie));
     }
 
 

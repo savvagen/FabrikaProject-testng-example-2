@@ -4,6 +4,7 @@ package com.Fabrika.utilites;
 import com.Fabrika.pages.Verifications;
 import com.Fabrika.pages.objects.HomePage;
 import com.Fabrika.pages.objects.LoginPage;
+import com.Fabrika.pages.objects.ProfilePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,6 +19,7 @@ public class BaseTest {
     public WebDriver driver;
     public LoginPage loginPage;
     public HomePage homePage;
+    public ProfilePage profilePage;
     public Verifications verfier;
 
 
@@ -46,6 +48,7 @@ public class BaseTest {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         homePage = PageFactory.initElements(driver, HomePage.class);
         verfier  =PageFactory.initElements(driver, Verifications.class);
+        profilePage = PageFactory.initElements(driver, ProfilePage.class);
 
     }
 

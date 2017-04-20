@@ -1,13 +1,12 @@
 package com.Fabrika.utilites;
 
 
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import javax.annotation.Nullable;
 
 public class Waits {
 
@@ -42,6 +41,21 @@ public class Waits {
                 }
             }
         };
+    }
+
+    public static ExpectedCondition<Boolean> cookieExist(final Cookie cookie){
+        return new ExpectedCondition<Boolean>() {
+            @Override
+            public Boolean apply(WebDriver driver) {
+                try {
+                    return cookie.toString() != null;
+                } catch (Exception e){
+                    e.printStackTrace();
+                    return false;
+                }
+            }
+        };
+
     }
 
 
